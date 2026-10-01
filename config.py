@@ -8,7 +8,7 @@ ENV_FILE = BASE_DIR/".env"
 
 load_dotenv(ENV_FILE)
 
-def get_reqired_env(name: str) -> str:
+def get_required_env(name: str) -> str:
 
     value = os.getenv(name)
 
