@@ -1,14 +1,13 @@
 import socket
 import ssl
 
-TAK_HOST = "takserver.test"
-TAK_PORT = 8089
-
-CA_FILE = "/home/kaftan/Documents/VS_Code/TAK_NSK_API_01/NSK-API-01-trusted.pem"
-CERT_FILE = "/home/kaftan/Documents/VS_Code/TAK_NSK_API_01/NSK-API-01.pem"
-KEY_FILE = "/home/kaftan/Documents/VS_Code/TAK_NSK_API_01/NSK-API-01.key"
-
-pwd = "1wdf2345AQ!>sdq1FO2"
+from config import (
+    TAK_HOST,
+    TAK_PORT,
+    CA_FILE,
+    CERT_FILE,
+    KEY_FILE,
+)
 
 def send_to_tak(cot: str):
 

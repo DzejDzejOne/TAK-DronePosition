@@ -23,6 +23,8 @@ def get_reqired_env(name: str) -> str:
 
 TAK_HOST = get_required_env("TAK_HOST")
 
+TAK_PORT = os.getenv("TAK_PORT", "8089")
+
 # CERTIFICATES
 
 CA_FILE = Path(
