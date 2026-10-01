@@ -7,17 +7,19 @@ from config import (
     CA_FILE,
     CERT_FILE,
     KEY_FILE,
+    CERT_PASSWORD,
 )
 
 def send_to_tak(cot: str):
 
     context = ssl.create_default_context(
-        cafile=CA_FILE
+        cafile=str(CA_FILE)
     )
 
     context.load_cert_chain(
-        certfile=CERT_FILE,
-        keyfile=KEY_FILE
+        certfile=str(CERT_FILE),
+        keyfile=str(KEY_FILE),
+        password=CERT_PASSWORD
     )
 
     with socket.create_connection(

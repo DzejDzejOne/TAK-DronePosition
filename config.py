@@ -39,6 +39,10 @@ KEY_FILE = Path(
     get_required_env("KEY_FILE")
 ).expanduser()
 
+# PASSWORDS
+
+CERT_PASSWORD = get_required_env("CERT_PASSWORD")
+
 # CERTIFICATES VALIDATION
 
 def validate_config():

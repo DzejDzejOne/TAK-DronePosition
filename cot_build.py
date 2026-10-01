@@ -18,7 +18,7 @@ def build_cot(drone):
             "version": "2.0",
             "uid": drone.uid,
 
-            "type": "COT_TYPE",
+            "type": "a-f-A",
 
             "time": iso_time(now),
             "start": iso_time(now),
