@@ -1,6 +1,9 @@
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
 
+from cot_build import build_cot
+from send_to_tak import send_to_tak
+
 app = FastAPI()
 
 class DronePosition(BaseModel):

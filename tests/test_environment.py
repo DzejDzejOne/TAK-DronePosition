@@ -5,7 +5,8 @@ REQUIRED_MODULES = [
     "uvicorn",
     "pydantic",
     "pytest",
-    "httpx"
+    "httpx",
+    "dotenv"
 ]
 
 def test_reqired_modules():

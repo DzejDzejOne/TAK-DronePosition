@@ -22,7 +22,7 @@ def test_build_cot_return_valid_xml():
     
     drone = SimpleNamespace(
         uid="uav-01",
-        callable="Matylda",
+        callsign="Matylda",
         latitude=52.2297,
         longitude=21.0122,
         altitude_hae_m=120.0
@@ -30,25 +30,25 @@ def test_build_cot_return_valid_xml():
 
     cot = build_cot(drone)
 
-    xml = ET.fromstring(str)
+    xml = ET.fromstring(cot)
 
     assert xml.tag == "event"
     assert xml.attrib["version"] == "2.0"
     assert xml.attrib["uid"] == "uav-01"
-    assert xml.attrib["callable"] == "Matylda"
+    assert xml.attrib["type"] == "COT_TYPE"
     assert xml.attrib["how"] == "h-e"
 
 def test_build_cot_create_correct_point():
 
     drone = SimpleNamespace(
             uid="uav-01",
-            callable="Matylda",
+            callsign="Matylda",
             latitude=52.2297,
             longitude=21.0122,
             altitude_hae_m=120.0
             )
 
-    cot = cot_build(drone)
+    cot = build_cot(drone)
 
     xml = ET.fromstring(cot)
 
@@ -57,7 +57,7 @@ def test_build_cot_create_correct_point():
     assert point is not None
 
     assert point.attrib["lat"] == "52.2297"
-    assert point.attrib["hae"] == "21.0122"
+    assert point.attrib["lon"] == "21.0122"
     assert point.attrib["hae"] == "120.0"
     assert point.attrib["ce"] == "1"
     assert point.attrib["le"] == "1"
