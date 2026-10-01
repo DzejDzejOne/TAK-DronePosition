@@ -30,6 +30,6 @@ def send_to_tak(cot: str):
             server_hostname=TAK_HOST
         ) as tls:
 
-            tls.sandall(
+            tls.sendall(
                 cot.encode("utf-8") + b"\n"
             )

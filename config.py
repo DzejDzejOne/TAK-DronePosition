@@ -28,15 +28,15 @@ TAK_PORT = os.getenv("TAK_PORT", "8089")
 # CERTIFICATES
 
 CA_FILE = Path(
-    get_required_env("TAK_CA_FILE")
+    get_required_env("CA_FILE")
 ).expanduser()
 
 CERT_FILE = Path(
-    get_required_env("TAK_CERT_FILE")
+    get_required_env("CERT_FILE")
 ).expanduser()
 
 KEY_FILE = Path(
-    get_required_env("TAK_KEY_FILE")
+    get_required_env("KEY_FILE")
 ).expanduser()
 
 # CERTIFICATES VALIDATION

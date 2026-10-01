@@ -5,6 +5,14 @@ from unittest.mock import patch, MagicMock
 
 from send_to_tak import send_to_tak
 
+from config import (
+    TAK_HOST,
+    TAK_PORT,
+    CA_FILE,
+    CERT_FILE,
+    KEY_FILE,
+)
+
 @patch("send_to_tak.ssl.create_default_context")
 @patch("send_to_tak.socket.create_connection")
 def test_send_to_tak_connects_to_server(
@@ -25,7 +33,7 @@ def test_send_to_tak_connects_to_server(
     send_to_tak("<event />")
 
     mock_create_connection.assert_called_once_with(
-        ("takserver.test", 8089),
+        (TAK_HOST, TAK_PORT),
         timeout=5
     )
 
@@ -44,7 +52,7 @@ def test_send_to_tak_uses_correct_ca(
     send_to_tak("<event />")
 
     mock_create_default_context.assert_called_once_with(
-        cafile="/home/kaftan/Documents/VS_Code/TAK_NSK_API_01/NSK-API-01-trusted.pem"
+        cafile=CA_FILE
     )
 
 @patch("send_to_tak.ssl.create_default_context")
@@ -62,8 +70,8 @@ def test_send_to_tak_loads_client_certificate(
     send_to_tak("<event />")
 
     context.load_cert_chain.assert_called_once_with(
-        certfile="/home/kaftan/Documents/VS_Code/TAK_NSK_API_01/NSK-API-01.pem",
-        keyfile="/home/kaftan/Documents/VS_Code/TAK_NSK_API_01/NSK-API-01.key"
+        certfile=CERT_FILE,
+        keyfile=KEY_FILE
     )
 
 @patch("send_to_tak.ssl.create_default_context")
@@ -87,7 +95,7 @@ def test_send_to_tak_uses_hostname_for_tls(
 
     context.wrap_socket.assert_called_once_with(
         socket_mock,
-        server_hostname="takserver.test"
+        server_hostname=TAK_HOST
     )
 
 @patch("send_to_tak.ssl.create_default_context")
@@ -111,7 +119,7 @@ def test_send_to_tak_uses_hostname_for_tls(
 
     context.wrap_socket.assert_called_once_with(
         socket_mock,
-        server_hostname="takserver.test"
+        server_hostname=TAK_HOST
     )
 
 @patch("send_to_tak.ssl.create_default_context")
