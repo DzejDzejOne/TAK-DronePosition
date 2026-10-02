@@ -1,0 +1,15 @@
+// Drone Types will be defined in the future, for now we will use a 
+// simple string to represent the type of drone/aircrafts etc.. 
+// The position is represented by latitude, longitude, 
+// and altitude in meters above the ellipsoid (HAE).
+
+{
+  "uid": "uav-001",
+  "callsign": "DRONE-ALFA",
+  "aircraft_type": "a-f-A",
+  "position": {
+    "latitude": 52.37177,
+    "longitude": 20.659237,
+    "altitude_hae_m": 120.0
+  }
+}
