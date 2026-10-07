@@ -25,11 +25,11 @@ class Motion(BaseModel):
 class Status(BaseModel):
 
     battery_percent: float = Field(ge=0, le=100)
-    gps_fix: bool
+    # gps_fix: bool
 
 class Details(BaseModel):
 
-    details: str | None = None
+    remarks: str | None = None
 
 class DronePosition(BaseModel):
 

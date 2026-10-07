@@ -11,6 +11,7 @@ from config import (
     CA_FILE,
     CERT_FILE,
     KEY_FILE,
+    CERT_PASSWORD,
 )
 
 @patch("send_to_tak.ssl.create_default_context")
@@ -52,7 +53,7 @@ def test_send_to_tak_uses_correct_ca(
     send_to_tak("<event />")
 
     mock_create_default_context.assert_called_once_with(
-        cafile=CA_FILE
+        cafile=str(CA_FILE)
     )
 
 @patch("send_to_tak.ssl.create_default_context")
@@ -70,8 +71,9 @@ def test_send_to_tak_loads_client_certificate(
     send_to_tak("<event />")
 
     context.load_cert_chain.assert_called_once_with(
-        certfile=CERT_FILE,
-        keyfile=KEY_FILE
+        certfile=str(CERT_FILE),
+        keyfile=str(KEY_FILE),
+        password=CERT_PASSWORD
     )
 
 @patch("send_to_tak.ssl.create_default_context")

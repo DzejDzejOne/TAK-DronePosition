@@ -51,6 +51,7 @@ def build_cot(drone):
     "status",
     {
         "battery": str(drone.status.battery_percent)
+        #"gps_fix": bool(drone.status.gps_fix)
     }
     )
 
