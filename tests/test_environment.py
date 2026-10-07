@@ -7,6 +7,7 @@ REQUIRED_MODULES = [
     "pytest",
     "httpx",
     "dotenv"
+    "requests"
 ]
 
 def test_reqired_modules():
