@@ -28,18 +28,36 @@ def build_cot(drone):
     )
     ET.SubElement(event, "point", 
                   {
-                      "lat": str(drone.latitude),
-                      "lon": str(drone.longitude),
-                      "hae": str(drone.altitude_hae_m),
-                      "ce": "1",
-                      "le": "1"
+                      "lat": str(drone.position.latitude),
+                      "lon": str(drone.position.longitude),
+                      "hae": str(drone.position.altitude_hae_m),
+                      "ce": str(drone.position.ce_m),
+                      "le": str(drone.position.le_m)
                   }
     )
-
+    ET.SubElement(event, "track",
+                  {
+                      "course": str(drone.motion.course_deg),
+                      "speed": str(drone.motion.speed_mps),
+                      "climb_rate": str(drone.motion.climb_rate_mps)
+                  }
+    )
     detail = ET.SubElement(event, "detail")
 
     ET.SubElement(detail, "contact", {"callsign": drone.callsign})
+    
+    ET.SubElement(
+    detail,
+    "status",
+    {
+        "battery": str(drone.status.battery_percent)
+    }
+    )
 
+    if drone.details.remarks:
+        remarks = ET.SubElement(detail, "remarks")
+        remarks.text = drone.details.remarks
+        
     return ET.tostring(
         event, 
         encoding="unicode"
